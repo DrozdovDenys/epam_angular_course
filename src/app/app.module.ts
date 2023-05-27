@@ -9,6 +9,9 @@ import { MainComponent } from './components/main/main.component';
 import { SearchBarComponent } from './components/main/search-bar/search-bar.component';
 import { CourseCardComponent } from './components/main/course-card/course-card.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LogoComponent } from './components/header/logo/logo.component';
+import { ButtonComponent } from './shared/button/button.component';
+import { InputComponent } from './shared/input/input.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { FooterComponent } from './components/footer/footer.component';
     SearchBarComponent,
     CourseCardComponent,
     FooterComponent,
+    LogoComponent,
+    ButtonComponent,
+    InputComponent,
   ],
   imports: [
     BrowserModule,

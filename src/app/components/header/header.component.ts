@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { user } from 'src/app/data/user';
-import { IUser } from 'src/app/models/user';
+import { IUser } from 'src/app/core/models/user';
 
 @Component({
 	selector: 'app-header',
@@ -8,6 +8,5 @@ import { IUser } from 'src/app/models/user';
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-	title = 'Video Course';
 	userName: IUser = user;
 }

@@ -1,4 +1,4 @@
-import { IUser } from '../models/user';
+import { IUser } from '../core/models/user';
 
 export const user: IUser = {
 	id: 1,

@@ -1,17 +1,17 @@
 <section class="bg-gray-50 p-5">
 	<app-search-bar></app-search-bar>
 	<div class="text-end">
-		<button class="rounded bg-green-400 px-2 py-1 items-end">
+		<app-button class="rounded bg-green-400 px-2 py-1 items-end">
 			➕ Add course
-		</button>
+		</app-button>
 	</div>
 	<app-course-card
 		*ngFor="let course of courses"
 		[course]="course"
 	></app-course-card>
 	<div class="mt-5 text-center bg-white p-3">
-		<button class="rounded bg-gray-400 px-2 py-1 items-end">
-			🔄 Load more
-		</button>
+		<app-button class="rounded bg-gray-400 px-2 py-1 items-end"
+			>🔄 Load more</app-button
+		>
 	</div>
 </section>

@@ -1,4 +1,4 @@
-import { ICourse } from '../models/course';
+import { ICourse } from '../core/models/course';
 
 export const courses: ICourse[] = [
 	{

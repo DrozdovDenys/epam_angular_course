@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ICourse } from 'src/app/models/course';
+import { ICourse } from 'src/app/core/models/course';
 import { courses as data } from '../../data/courses';
 
 @Component({
