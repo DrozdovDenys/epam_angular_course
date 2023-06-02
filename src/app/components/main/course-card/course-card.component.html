@@ -1,0 +1,20 @@
+<article class="bg-white rounded p-4 mt-5">
+	<div class="flex justify-between w-[80%] p-1">
+		<h2><strong>{{course.title}}</strong></h2>
+		<div class="flex gap-2">
+			<span>🕝{{course.duration}}</span>
+			<span>📆{{course.creationDate}}</span>
+		</div>
+	</div>
+	<div class="flex justify-between p-1">
+		<p class="basis-[80%]">{{course.description}}</p>
+		<div class="flex gap-2 items-center">
+			<app-button class="rounded bg-green-400 px-2 py-1 items-end">
+				🖊 Edit
+			</app-button>
+			<app-button class="rounded bg-green-400 px-2 py-1 items-end">
+				🗑 Delete
+			</app-button>
+		</div>
+	</div>
+</article>
