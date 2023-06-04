@@ -8,4 +8,7 @@ import { ICourse } from 'src/app/core/models/course';
 })
 export class CourseCardComponent {
 	@Input() course: ICourse;
+	handleDelete(id: number) {
+		console.log(id);
+	}
 }

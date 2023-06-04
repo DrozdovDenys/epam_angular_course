@@ -10,7 +10,9 @@
 		[course]="course"
 	></app-course-card>
 	<div class="mt-5 text-center bg-white p-3">
-		<app-button class="rounded bg-gray-400 px-2 py-1 items-end"
+		<app-button
+			(click)="handleLoadMore()"
+			class="rounded bg-gray-400 px-2 py-1 items-end"
 			>🔄 Load more</app-button
 		>
 	</div>

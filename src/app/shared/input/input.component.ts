@@ -8,5 +8,10 @@ import { Component, Input } from '@angular/core';
 export class InputComponent {
 	@Input() placeholder: string;
 	@Input() type: string;
-	inputValue: string;
+	@Input() searchBtn: boolean;
+	value: string;
+
+	handleSearch(value: string): void {
+		console.log(value);
+	}
 }

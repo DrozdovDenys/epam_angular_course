@@ -12,7 +12,10 @@
 			<app-button class="rounded bg-green-400 px-2 py-1 items-end">
 				🖊 Edit
 			</app-button>
-			<app-button class="rounded bg-green-400 px-2 py-1 items-end">
+			<app-button
+				(onclick)="handleDelete(course.id)"
+				class="rounded bg-green-400 px-2 py-1 items-end"
+			>
 				🗑 Delete
 			</app-button>
 		</div>
