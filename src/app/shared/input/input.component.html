@@ -1,4 +1,4 @@
-<div class="flex items-center gap-2">
+<div>
 	<span class="absolute z-10 pl-1"><ng-content></ng-content></span>
 	<input
 		type="{{type}}"
@@ -6,11 +6,4 @@
 		[(ngModel)]="value"
 		class="border pl-6 border-orange-400 focus-visible:outline-none relative w-full"
 	/>
-	<button
-		*ngIf="searchBtn"
-		class="rounded bg-green-400 px-2 py-1"
-		(click)="handleSearch(value)"
-	>
-		Submit
-	</button>
 </div>

@@ -11,7 +11,5 @@ export class InputComponent {
 	@Input() searchBtn: boolean;
 	value: string;
 
-	handleSearch(value: string): void {
-		console.log(value);
-	}
+
 }

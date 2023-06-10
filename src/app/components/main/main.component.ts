@@ -9,6 +9,12 @@ import { courses as data } from '../../data/courses';
 })
 export class MainComponent implements OnInit {
 	courses: ICourse[] = [];
+	searchInput = '';
+	courseIdfromChild: number;
+
+	onCourseCardClicked(id: number) {
+		this.courseIdfromChild = id;
+	}
 	ngOnInit(): void {
 		this.courses = data;
 	}
