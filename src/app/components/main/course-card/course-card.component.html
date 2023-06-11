@@ -12,12 +12,14 @@
 			<app-button
 				class="rounded bg-green-400 px-2 py-1 items-end"
 				(click)="emitCourseCardClick(course.id)"
+				data-testid="edit-button"
 			>
 				🖊 Edit
 			</app-button>
 			<app-button
 				(onclick)="handleDelete(course.id)"
 				class="rounded bg-green-400 px-2 py-1 items-end"
+				data-testid="edit-button"
 			>
 				🗑 Delete
 			</app-button>

@@ -1,29 +1,45 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+	let component: AppComponent;
+	let fixture: ComponentFixture<AppComponent>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [AppComponent],
+			schemas: [NO_ERRORS_SCHEMA],
+		}).compileComponents();
+	});
 
-  it(`should have as title 'epam_angular_course'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('epam_angular_course');
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(AppComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('epam_angular_course app is running!');
-  });
+	it('should render the header, logo, breadcrumbs, main, and footer components', () => {
+		const headerElement: HTMLElement = fixture.nativeElement.querySelector(
+			'app-header'
+		);
+		const logoElement: HTMLElement = fixture.nativeElement.querySelector(
+			'app-logo'
+		);
+		const breadcrumbsElement: HTMLElement = fixture.nativeElement.querySelector(
+			'app-bread-crumbs'
+		);
+		const mainElement: HTMLElement = fixture.nativeElement.querySelector(
+			'app-main'
+		);
+		const footerElement: HTMLElement = fixture.nativeElement.querySelector(
+			'app-footer'
+		);
+
+		expect(headerElement).toBeTruthy();
+		expect(logoElement).toBeTruthy();
+		expect(breadcrumbsElement).toBeTruthy();
+		expect(mainElement).toBeTruthy();
+		expect(footerElement).toBeTruthy();
+	});
 });
