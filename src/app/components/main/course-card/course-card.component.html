@@ -9,10 +9,16 @@
 	<div class="flex justify-between p-1">
 		<p class="basis-[80%]">{{course.description}}</p>
 		<div class="flex gap-2 items-center">
-			<app-button class="rounded bg-green-400 px-2 py-1 items-end">
+			<app-button
+				class="rounded bg-green-400 px-2 py-1 items-end"
+				(click)="emitCourseCardClick(course.id)"
+			>
 				🖊 Edit
 			</app-button>
-			<app-button class="rounded bg-green-400 px-2 py-1 items-end">
+			<app-button
+				(onclick)="handleDelete(course.id)"
+				class="rounded bg-green-400 px-2 py-1 items-end"
+			>
 				🗑 Delete
 			</app-button>
 		</div>

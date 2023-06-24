@@ -1,4 +1,11 @@
-<div class="flex items-center gap-2 w-[40vw] min-w-[300px]">
-	<app-input class="w-full" type="search">🔍</app-input>
-	<app-button class="rounded bg-green-400 px-2 py-1">Search</app-button>
+<div class="w-[40vw] min-w-[300px] flex items-center gap-2">
+	<span class="absolute z-10 pl-1">🍳</span>
+	<input
+		type="search"
+		[(ngModel)]="searchInput"
+		class="border pl-6 border-orange-400 focus-visible:outline-none relative w-full"
+	/>
+	<button class="rounded bg-green-400 px-2 py-1" (click)="emitsearchInput()">
+		Submit
+	</button>
 </div>

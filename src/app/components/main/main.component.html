@@ -1,16 +1,21 @@
 <section class="bg-gray-50 p-5">
-	<app-search-bar></app-search-bar>
+	<app-search-bar [(searchInput)]="searchInput"></app-search-bar>
+	<p>You searched for: {{ searchInput }}</p>
+	<p>You clicked course id: {{ courseIdfromChild }}</p>
 	<div class="text-end">
 		<app-button class="rounded bg-green-400 px-2 py-1 items-end">
 			➕ Add course
 		</app-button>
 	</div>
 	<app-course-card
-		*ngFor="let course of courses"
+		*ngFor="let course of courses; trackBy: trackById"
 		[course]="course"
+		(courseCardClick)="onCourseCardClicked($event)"
 	></app-course-card>
 	<div class="mt-5 text-center bg-white p-3">
-		<app-button class="rounded bg-gray-400 px-2 py-1 items-end"
+		<app-button
+			(click)="handleLoadMore()"
+			class="rounded bg-gray-400 px-2 py-1 items-end"
 			>🔄 Load more</app-button
 		>
 	</div>
