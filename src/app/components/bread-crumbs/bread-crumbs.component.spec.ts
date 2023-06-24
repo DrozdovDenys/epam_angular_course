@@ -4,6 +4,8 @@ import { BreadCrumbsComponent } from './bread-crumbs.component';
 describe('BreadCrumbsComponent', () => {
 	let component: BreadCrumbsComponent;
 	let fixture: ComponentFixture<BreadCrumbsComponent>;
+	let breadcrumbsElement: HTMLElement;
+	let anchorElement: HTMLAnchorElement | null;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -21,20 +23,22 @@ describe('BreadCrumbsComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
+	beforeEach(() => {
+		breadcrumbsElement = fixture.nativeElement.querySelector('ul');
+		anchorElement = breadcrumbsElement.querySelector('a');
+	});
+
 	it('should render the breadcrumbs correctly', () => {
-		const breadcrumbsElement: HTMLElement = fixture.nativeElement.querySelector(
-			'ul'
-		);
 		expect(breadcrumbsElement).toBeTruthy();
+	});
 
-		const anchorElement: HTMLAnchorElement | null = breadcrumbsElement.querySelector(
-			'a'
-		);
+	it('should render the anchorElement correctly', () => {
 		expect(anchorElement).toBeTruthy();
-
-		if (anchorElement) {
-			expect(anchorElement.href).toContain('/course');
-			expect(anchorElement.textContent).toContain('Course');
-		}
+	});
+	it('should contain the path correctly', () => {
+		expect(anchorElement?.href).toContain('/course');
+	});
+	it('should contain the anchorElement correctly', () => {
+		expect(anchorElement?.textContent).toBe('Course');
 	});
 });

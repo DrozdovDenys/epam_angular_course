@@ -39,7 +39,7 @@ describe('SearchBarComponent', () => {
 
 		submitButton.click();
 
-		expect(component.emitsearchInput).toHaveBeenCalled();
+		expect(component.emitsearchInput).toHaveBeenCalledWith();
 		expect(component.searchInput).toBe('test input value');
 	});
 });

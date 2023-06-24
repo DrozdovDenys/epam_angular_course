@@ -19,27 +19,37 @@ describe('AppComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should render the header, logo, breadcrumbs, main, and footer components', () => {
+	it('should render the header', () => {
 		const headerElement: HTMLElement = fixture.nativeElement.querySelector(
 			'app-header'
 		);
+		expect(headerElement).toBeTruthy();
+	});
+
+	it('shoud render the logo', () => {
 		const logoElement: HTMLElement = fixture.nativeElement.querySelector(
 			'app-logo'
 		);
+		expect(logoElement).toBeTruthy();
+	});
+	it('shoud render the breadcrumbs', () => {
 		const breadcrumbsElement: HTMLElement = fixture.nativeElement.querySelector(
 			'app-bread-crumbs'
 		);
+		expect(breadcrumbsElement).toBeTruthy();
+	});
+	it('shoud render the main', () => {
 		const mainElement: HTMLElement = fixture.nativeElement.querySelector(
 			'app-main'
 		);
+		expect(mainElement).toBeTruthy();
+	});
+	it('shoud render the footer', () => {
 		const footerElement: HTMLElement = fixture.nativeElement.querySelector(
 			'app-footer'
 		);
-
-		expect(headerElement).toBeTruthy();
-		expect(logoElement).toBeTruthy();
-		expect(breadcrumbsElement).toBeTruthy();
-		expect(mainElement).toBeTruthy();
 		expect(footerElement).toBeTruthy();
 	});
+
+	
 });

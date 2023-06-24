@@ -3,9 +3,12 @@
 	<input
 		type="search"
 		[(ngModel)]="searchInput"
-		class="border pl-6 border-orange-400 focus-visible:outline-none relative w-full"
+		class="border pl-6 border-gray-400 focus-visible:outline-none relative w-full"
 	/>
-	<button class="rounded bg-green-400 px-2 py-1" (click)="emitsearchInput()">
+	<button
+		class="rounded bg-green-400 px-2 py-1 text-white font-semibold border border-black"
+		(click)="emitsearchInput()"
+	>
 		Submit
 	</button>
 </div>

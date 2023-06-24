@@ -1,3 +1,6 @@
-<button (click)="onClick()">
+<button
+	(click)="onClick()"
+	[ngClass]="'rounded text-white font-semibold p-2 bg-blue-400 border border-black ' + buttonClasses"
+>
 	<ng-content></ng-content>
 </button>
