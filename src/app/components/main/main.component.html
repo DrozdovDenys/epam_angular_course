@@ -10,8 +10,11 @@
 	<app-course-card
 		*ngFor="let course of courses; trackBy: trackById"
 		[course]="course"
-		(courseCardClick)="onCourseCardClicked($event)"
-	></app-course-card>
+		(courseEdit)="onEditCourse(course)"
+		(courseDelete)="onDeleteCourse(course)"
+	>
+		></app-course-card
+	>
 	<div class="mt-5 text-center bg-white p-3">
 		<app-button (click)="handleLoadMore()" class="rounded items-end"
 			>🔄 Load more</app-button

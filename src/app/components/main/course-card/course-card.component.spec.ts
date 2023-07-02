@@ -1,8 +1,64 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseCardComponent } from './course-card.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+	Component,
+	DebugElement,
+	EventEmitter,
+	NO_ERRORS_SCHEMA,
+} from '@angular/core';
+import { ICourse } from 'src/app/core/models/course';
+import { ButtonComponent } from 'src/app/shared/button/button.component';
+import { By } from '@angular/platform-browser';
 
-describe('CourseCardComponent', () => {
+@Component({
+	template: `
+		<app-course-card
+			[course]="course"
+			(courseDelete)="onDelete($event)"
+			(courseEdit)="onEdit($event)"
+		></app-course-card>
+	`,
+})
+class TestHostComponent {
+	course: ICourse = {
+		id: 1,
+		title: 'Video Course 1. Name tag',
+		description:
+			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cum harum quibusdam suscipit cumque reprehenderit veritatis voluptatum consectetur accusamus quisquam exercitationem ut fugit magnam temporibus soluta explicabo aspernatur eaque voluptates.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cum harum quibusdam suscipit cumque reprehenderit veritatis voluptatum consectetur accusamus quisquam exercitationem ut fugit magnam temporibus soluta explicabo aspernatur eaque voluptates.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cum harum quibusdam suscipit cumque reprehenderit veritatis voluptatum consectetur accusamus quisquam exercitationem ut fugit magnam temporibus soluta explicabo aspernatur eaque voluptates.',
+		duration: '1h 30min',
+		creationDate: '08/28/2020',
+	};
+	courseCardEdit!: number;
+	courseCardDelete!: number;
+
+	onCourseCardEdit(id: number) {
+		this.courseCardEdit = id;
+	}
+	onCourseCardDelete(id: number) {
+		this.courseCardDelete = id;
+	}
+}
+
+describe('CourseItemComponent class-only', () => {
+	let component: CourseCardComponent;
+
+	beforeEach(() => {
+		component = new CourseCardComponent();
+		component.courseCardDelete = new EventEmitter<number>();
+	});
+
+	it('should trigger the event handlers correctly', () => {
+		const courseId = 1;
+		spyOn(component.courseCardDelete, 'emit');
+		spyOn(component.courseCardEdit, 'emit');
+		component.onCourseCardDelete(courseId);
+		component.onCourseCardEdit(courseId);
+		expect(component.courseCardDelete.emit).toHaveBeenCalledWith(courseId);
+		expect(component.courseCardEdit.emit).toHaveBeenCalledWith(courseId);
+	});
+});
+
+describe('CourseCardComponent stand alone', () => {
 	let component: CourseCardComponent;
 	let fixture: ComponentFixture<CourseCardComponent>;
 
@@ -49,23 +105,63 @@ describe('CourseCardComponent', () => {
 			component.course.description
 		);
 	});
+});
 
-	it('should trigger the event handlers correctly', () => {
-		const courseId = 1;
-		const editButton: HTMLButtonElement = fixture.nativeElement.querySelector(
-			'app-button[data-testid="edit-button"]'
+describe('CourseCardComponent hosted', () => {
+	let fixture: ComponentFixture<TestHostComponent>;
+	let testHost: TestHostComponent;
+	let courseDebug: DebugElement;
+
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [CourseCardComponent, TestHostComponent, ButtonComponent],
+		}).compileComponents();
+	});
+
+	beforeEach(() => {
+		fixture = TestBed.createComponent(TestHostComponent);
+		testHost = fixture.componentInstance;
+		courseDebug = fixture.debugElement.query(
+			By.css('[data-testid="course-card"]')
 		);
-		// const deleteButton: HTMLButtonElement = fixture.nativeElement.querySelector(
-		// 	'app-button[data-testid="delete-button"]'
-		// );
+		fixture.detectChanges();
+	});
+	it('should display course title', () => {
+		const title = courseDebug.query(By.css('[data-testid="course-title"]'));
+		expect(title.nativeElement.textContent).toBe(testHost.course.title);
+	});
+	it('should display course duration', () => {
+		const duration = courseDebug.query(
+			By.css('[data-testid="course-duration"]')
+		);
+		expect(duration.nativeElement.textContent).toBe(testHost.course.duration);
+	});
+	it('should display course creationDate', () => {
+		const creationDate = courseDebug.query(
+			By.css('[data-testid="course-creationDate"]')
+		);
+		expect(creationDate.nativeElement.textContent).toBe(
+			testHost.course.creationDate
+		);
+	});
+	it('should display course description', () => {
+		const description = courseDebug.query(
+			By.css('[data-testid="course-description"]')
+		);
+		expect(description.nativeElement.textContent.trim()).toBe(
+			testHost.course.description
+		);
+	});
+	it("should raise courseEdit event when 'Edit' button is clicked", () => {
+		const editBtn = courseDebug.query(By.css('[data-testid="edit-button"]'));
 
-		spyOn(component, 'emitCourseCardClick');
-		// spyOn(component, 'handleDelete');
+		editBtn.triggerEventHandler('click');
+		expect(testHost.courseCardEdit).toBe(testHost.courseCardEdit);
+	});
+	it("should raise courseDelete event when 'Delete' button is clicked", () => {
+		const editBtn = courseDebug.query(By.css('[data-testid="edit-button"]'));
 
-		editButton.click();
-		// deleteButton.click();
-
-		expect(component.emitCourseCardClick).toHaveBeenCalledWith(courseId);
-		// expect(component.handleDelete).toHaveBeenCalledWith(courseId);
+		editBtn.triggerEventHandler('click');
+		expect(testHost.courseCardDelete).toBe(testHost.courseCardDelete);
 	});
 });

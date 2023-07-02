@@ -1,22 +1,26 @@
-<article class="bg-white rounded p-4 mt-5">
+<article class="bg-white rounded p-4 mt-5" data-testid="course-card">
 	<div class="flex justify-between w-[80%] p-1">
-		<h2><strong>{{course.title}}</strong></h2>
+		<h2 data-testid="course-title"><strong>{{course.title}}</strong></h2>
 		<div class="flex gap-2">
-			<span>🕝{{course.duration}}</span>
-			<span>📆{{course.creationDate}}</span>
+			🕝<span data-testid="course-duration">{{course.duration}}</span> 📆<span
+				data-testid="course-creationDate"
+				>{{course.creationDate}}</span
+			>
 		</div>
 	</div>
 	<div class="flex justify-between p-1">
-		<p class="basis-[80%]">{{course.description}}</p>
+		<p class="basis-[80%]" data-testid="course-description">
+			{{course.description}}
+		</p>
 		<div class="flex gap-2 items-center">
 			<app-button
-				(click)="emitCourseCardClick(course.id)"
+				(click)="onCourseCardEdit(course.id)"
 				data-testid="edit-button"
 			>
 				🖊 Edit
 			</app-button>
 			<app-button
-				(onclick)="handleDelete(course.id)"
+				(onclick)="onCourseCardDelete(course.id)"
 				data-testid="delete-button"
 			>
 				🗑 Delete
