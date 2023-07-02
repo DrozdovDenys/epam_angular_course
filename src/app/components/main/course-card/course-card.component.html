@@ -1,9 +1,22 @@
-<article class="bg-white rounded p-4 mt-5">
+<article
+	class="bg-white rounded p-4 mt-5"
+	[ngClass]="{'bg-blue-500' : course.topRated}"
+>
 	<div class="flex justify-between w-[80%] p-1">
-		<h2><strong>{{course.title}}</strong></h2>
+		<h2>
+			<strong>{{course.title}}</strong>
+			<sup *ngIf="course.topRated" class="text-yellow-400 ml-2 text-lg"
+				>&#9733;</sup
+			>
+		</h2>
 		<div class="flex gap-2">
-			<span>🕝{{course.duration}}</span>
-			<span>📆{{course.creationDate}}</span>
+			<span>🕝{{course.duration | durationPipe}}</span>
+			<span
+				class="border px-2"
+				[appHighlightCreationDate]="course.creationDate"
+			>
+				📆{{course.creationDate | date: 'mediumDate'}}
+			</span>
 		</div>
 	</div>
 	<div class="flex justify-between p-1">

@@ -7,8 +7,11 @@
 			➕ Add course
 		</app-button>
 	</div>
+	<div *ngIf="courses.length === 0" class="border text-center shadow mt-4">
+		<strong>No data feel free to enter new course !</strong>
+	</div>
 	<app-course-card
-		*ngFor="let course of courses; trackBy: trackById"
+		*ngFor="let course of filterCourse(courses, searchInput) | orderBy; trackBy: trackById"
 		[course]="course"
 		(courseCardClick)="onCourseCardClicked($event)"
 	></app-course-card>

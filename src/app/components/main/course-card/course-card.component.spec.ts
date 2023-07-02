@@ -20,9 +20,10 @@ describe('CourseCardComponent', () => {
 		component.course = {
 			id: 1,
 			title: 'Angular Course',
-			duration: '2 hours',
-			creationDate: '2023-06-10',
+			duration: 60,
+			creationDate: new Date(2023, 5, 10),
 			description: 'This is an Angular course.',
+			topRated: false,
 		};
 
 		fixture.detectChanges();
