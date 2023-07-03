@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ICourse } from 'src/app/core/models/course';
 import { courses as data } from '../../data/courses';
 import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
@@ -31,5 +31,15 @@ export class MainComponent implements OnInit {
 	filterCourse(courses: ICourse[], searchtext: string): ICourse[] {
 		const filterPipe = new FilterPipe();
 		return filterPipe.transform(courses, searchtext);
+	}
+	@Output() courseEdit = new EventEmitter<ICourse>();
+	@Output() courseDelete = new EventEmitter<ICourse>();
+
+	onEditCourse(course: ICourse) {
+		this.courseEdit.emit(course);
+	}
+
+	onDeleteCourse(course: ICourse) {
+		this.courseDelete.emit(course);
 	}
 }

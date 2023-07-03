@@ -14,7 +14,7 @@ export const courses: ICourse[] = [
 	{
 		id: 2,
 		title: 'Video Curse 2. Name Tag',
-		creationDate: new Date(2023, 5, 16),
+		creationDate: new Date(2023, 5, 28),
 		duration: 45,
 		description:
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cum harum quibusdam suscipit cumque reprehenderit veritatis voluptatum consectetur accusamus quisquam exercitationem ut fugit magnam temporibus soluta explicabo aspernatur eaque voluptates.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cum harum quibusdam suscipit cumque reprehenderit veritatis voluptatum consectetur accusamus quisquam exercitationem ut fugit magnam temporibus soluta explicabo aspernatur eaque voluptates.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cum harum quibusdam suscipit cumque reprehenderit veritatis voluptatum consectetur accusamus quisquam exercitationem ut fugit magnam temporibus soluta explicabo aspernatur eaque voluptates. ',

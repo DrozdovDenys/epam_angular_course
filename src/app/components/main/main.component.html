@@ -13,7 +13,8 @@
 	<app-course-card
 		*ngFor="let course of filterCourse(courses, searchInput) | orderBy; trackBy: trackById"
 		[course]="course"
-		(courseCardClick)="onCourseCardClicked($event)"
+		(courseEdit)="onEditCourse(course)"
+		(courseDelete)="onDeleteCourse(course)"
 	></app-course-card>
 	<div class="mt-5 text-center bg-white p-3">
 		<app-button

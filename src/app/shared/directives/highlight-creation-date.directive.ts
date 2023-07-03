@@ -15,8 +15,6 @@ export class HighlightCreationDateDirective implements OnInit {
 	private checkCreationDate() {
 		const currentDate = new Date();
 		const millisecondsIn14days = 14 * 24 * 60 * 60 * 1000;
-		console.log(this.appHighlightCreationDate?.getTime());
-		console.log(currentDate?.getTime());
 		if (this.appHighlightCreationDate) {
 			if (
 				this.appHighlightCreationDate < currentDate &&
