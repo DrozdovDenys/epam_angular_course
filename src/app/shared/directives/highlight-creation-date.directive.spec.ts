@@ -1,48 +1,63 @@
-import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Component } from '@angular/core';
 import { HighlightCreationDateDirective } from './highlight-creation-date.directive';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
+
+@Component({
+	template: `
+		<div [appHighlightCreationDate]="date" id="targetElement"></div>
+	`,
+})
+class TestComponent {
+	date: Date | undefined;
+}
 
 describe('HighlightCreationDateDirective', () => {
-	@Component({
-		template: ` <div [appHighlightCreationDate]="creationDate"></div> `,
-	})
-	class TestComponent {
-		creationDate?: Date = new Date();
-	}
-
-	const elementRefMock = jasmine.createSpyObj('ElementRef', ['nativeElement']);
-	const rendererRefMock = jasmine.createSpyObj('Renderer2', ['nativeElement']);
-
+	let component: TestComponent;
 	let fixture: ComponentFixture<TestComponent>;
 
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [HighlightCreationDateDirective, TestComponent],
+		}).compileComponents();
+	});
+
 	beforeEach(() => {
-		fixture = TestBed.configureTestingModule({
-			declarations: [TestComponent, HighlightCreationDateDirective],
-			schemas: [CUSTOM_ELEMENTS_SCHEMA],
-		}).createComponent(TestComponent);
+		fixture = TestBed.createComponent(TestComponent);
+		component = fixture.componentInstance;
 	});
 
-	it('should create an instance', () => {
-		const directive = new HighlightCreationDateDirective(
-			elementRefMock,
-			rendererRefMock
-		);
-		expect(directive).toBeTruthy();
-	});
-
-	it('should color the border in blue', () => {
-		const testdate = (fixture.componentInstance.creationDate = new Date());
-		testdate.setDate(testdate.getDate() + 15);
+	it('should add "border-green-400" class when date is within 14 days from now', () => {
+		const currentDate = new Date();
+		const dateWithin14Days = new Date(
+			currentDate.getTime() - 10 * 24 * 60 * 60 * 1000
+		); // 10 days ago
+		component.date = dateWithin14Days;
 		fixture.detectChanges();
-		expect(fixture.nativeElement.firstChild.style.borderColor).toBe('blue');
+
+		const targetElement = fixture.nativeElement.querySelector('#targetElement');
+		expect(targetElement.classList).toContain('border-green-400');
 	});
 
-	it('should color the border in green', () => {
-		const testdate = (fixture.componentInstance.creationDate = new Date());
-		testdate.setDate(testdate.getDate() - 2);
+	it('should add "border-blue-600" class when date is in the future', () => {
+		const currentDate = new Date();
+		const futureDate = new Date(
+			currentDate.getTime() + 10 * 24 * 60 * 60 * 1000
+		); // 10 days in the future
+		component.date = futureDate;
 		fixture.detectChanges();
-		expect(fixture.nativeElement.firstChild.style.borderColor).toBe('green');
+
+		const targetElement = fixture.nativeElement.querySelector('#targetElement');
+		expect(targetElement.classList).toContain('border-blue-600');
+	});
+
+	it('should not add any classes when date is outside the defined ranges', () => {
+		const currentDate = new Date();
+		const pastDate = new Date(currentDate.getTime() - 20 * 24 * 60 * 60 * 1000); // 20 days ago
+		component.date = pastDate;
+		fixture.detectChanges();
+
+		const targetElement = fixture.nativeElement.querySelector('#targetElement');
+		expect(targetElement.classList).not.toContain('border-green-400');
+		expect(targetElement.classList).not.toContain('border-blue-600');
 	});
 });

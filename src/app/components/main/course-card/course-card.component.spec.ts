@@ -1,14 +1,48 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseCardComponent } from './course-card.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
+import { ButtonComponent } from 'src/app/shared/button/button.component';
+import { HighlightCreationDateDirective } from 'src/app/shared/directives/highlight-creation-date.directive';
 
 describe('CourseCardComponent', () => {
 	let component: CourseCardComponent;
 	let fixture: ComponentFixture<CourseCardComponent>;
 
+	@Pipe({
+		name: 'orderBy',
+	})
+	class MockOrderByPipe implements PipeTransform {
+		transform(value: number): number {
+			return value;
+		}
+	}
+
+	@Pipe({
+		name: 'durationPipe',
+	})
+	class MockDurationPipe implements PipeTransform {
+		transform(value: number): number {
+			return value;
+		}
+	}
+
+	@Pipe({ name: 'date' })
+	class MockDatePipe implements PipeTransform {
+		transform(value: Date): any {
+			return value;
+		}
+	}
+
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [CourseCardComponent],
+			declarations: [
+				CourseCardComponent,
+				ButtonComponent,
+				MockOrderByPipe,
+				MockDurationPipe,
+				HighlightCreationDateDirective,
+				MockDatePipe,
+			],
 			schemas: [NO_ERRORS_SCHEMA],
 		}).compileComponents();
 	});

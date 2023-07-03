@@ -1,14 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainComponent } from './main.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 
 describe('MainComponent', () => {
 	let component: MainComponent;
 	let fixture: ComponentFixture<MainComponent>;
 
+	@Pipe({
+		name: 'orderBy',
+	})
+	class MockOrderByPipe implements PipeTransform {
+		transform(value: number): number {
+			return value;
+		}
+	}
+
+	@Pipe({
+		name: 'durationPipe',
+	})
+	class MockDurationPipe implements PipeTransform {
+		transform(value: number): number {
+			return value;
+		}
+	}
+
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [MainComponent],
+			declarations: [MainComponent, MockDurationPipe, MockOrderByPipe],
 			schemas: [NO_ERRORS_SCHEMA],
 		}).compileComponents();
 	});
