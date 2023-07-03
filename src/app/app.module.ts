@@ -5,18 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from './components/components.module';
-import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './pages/login/login.component';
+import { SharedModule } from "./shared/shared.module";
+import { CreateCourseComponent } from './pages/create-course/create-course.component';
 
 @NgModule({
-	declarations: [],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		FormsModule,
-		ComponentsModule,
-		SharedModule,
-	],
-	providers: [],
-	bootstrap: [AppComponent],
+    declarations: [AppComponent, LoginComponent, CreateCourseComponent],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [BrowserModule, AppRoutingModule, FormsModule, ComponentsModule, SharedModule]
 })
 export class AppModule {}

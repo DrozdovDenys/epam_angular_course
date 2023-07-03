@@ -1,0 +1,90 @@
+<form class="p-5 border">
+	<h1>New course</h1>
+	<fieldset>
+		<div class="flex justify-between items-end mb-5">
+			<div class="flex flex-col w-full">
+				<div class="flex justify-between mt-2">
+					<label for="inputTitle" class="cursor-pointer">Title</label>
+					<p class="text-xs">* required</p>
+				</div>
+
+				<input
+					name="title"
+					placeholder="write title.."
+					id="inputTitle"
+					class="border p-2"
+				/>
+			</div>
+		</div>
+		<div class="flex flex-col">
+			<div class="flex justify-between mt-2">
+				<label for="textareaDescription" class="cursor-pointer"
+					>Description</label
+				>
+				<p class="text-xs">* required</p>
+			</div>
+
+			<textarea
+				name="description"
+				id="textareaDescription"
+				placeholder="write description..."
+				class="border p-2"
+			></textarea>
+		</div>
+	</fieldset>
+
+	<fieldset class="flex flex-col gap-5 mt-5">
+		<div class="w-52">
+			<div class="flex flex-col w-full">
+				<div class="flex justify-between mt-2">
+					<label for="duration" class="cursor-pointer">Duration:</label>
+					<p class="text-xs">* required</p>
+				</div>
+
+				<input
+					name="title"
+					placeholder="write duration..."
+					id="duration"
+					class="border p-2"
+				/>
+			</div>
+		</div>
+		<div class="w-52">
+			<div class="flex flex-col w-full">
+				<div class="flex justify-between mt-2">
+					<label for="date" class="cursor-pointer">Date:</label>
+					<p class="text-xs">* required</p>
+				</div>
+
+				<input
+					type="date"
+					name="title"
+					placeholder="write title.."
+					id="date"
+					class="border p-2"
+				/>
+			</div>
+		</div>
+
+		<div class="w-80">
+			<div class="flex flex-col w-full">
+				<div class="flex justify-between mt-2">
+					<label for="authors" class="cursor-pointer">Authors:</label>
+					<p class="text-xs">* required</p>
+				</div>
+
+				<input
+					name="title"
+					placeholder="write title.."
+					id="authors"
+					class="border p-2"
+				/>
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="ml-auto w-max">
+		<app-button class="rounded bg-gray-400 px-3 py-1 mr-2">Cancel</app-button>
+		<app-button class="rounded bg-green-400 px-3 py-1">Save</app-button>
+	</div>
+</form>

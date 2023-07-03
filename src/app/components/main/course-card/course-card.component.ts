@@ -60,13 +60,15 @@ export class CourseCardComponent
 	}
 
 	@Input() course: ICourse;
-	@Output() courseCardClick: EventEmitter<number> = new EventEmitter<number>();
+	@Output() courseCardEdit: EventEmitter<number> = new EventEmitter();
+	@Output() courseCardDelete: EventEmitter<number> = new EventEmitter();
 
-	emitCourseCardClick(id: number) {
+	onCourseCardEdit(id: number) {
 		console.log('CourseCardComponent - emitCourseCardClick', id);
-		this.courseCardClick.emit(id);
+		this.courseCardEdit.emit(id);
 	}
-	handleDelete(id: number) {
+	onCourseCardDelete(id: number) {
 		console.log('handleDelete', id);
+		this.courseCardDelete.emit(id);
 	}
 }
